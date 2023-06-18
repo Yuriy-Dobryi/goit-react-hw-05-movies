@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
+
+export const Main = styled.main`
+  padding: 30px 0;
+`;
 
 export const Container = styled.div`
   max-width: 960px;
@@ -14,7 +18,7 @@ export const Header = styled.header`
   gap: 12px;
   padding: 8px 0;
   margin-bottom: 16px;
-  border-bottom: 1px solid black;
+  border-bottom: 5px solid black;
 
   > nav {
     display: flex;
@@ -22,19 +26,32 @@ export const Header = styled.header`
 `;
 
 export const Logo = styled.p`
+  display: flex;
+  align-items: center;
+  font-size: 30px;
   font-weight: 700;
   margin: 0;
+  & img {
+    width: 60px;
+    height: 60px;
+  }
 `;
 
-export const Link = styled(NavLink)`
+export const StyledNavLink = styled(NavLink)`
   padding: 8px 16px;
-  border-radius: 4px;
+  border-radius: 40px;
   text-decoration: none;
   color: black;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 600;
 
   &.active {
     color: white;
-    background-color: orangered;
+    background-color: rgb(92, 125, 218);
   }
 `;
+
+export const StyledLink = styled(Link)`
+  display: flex;
+  align-items: center;
+`

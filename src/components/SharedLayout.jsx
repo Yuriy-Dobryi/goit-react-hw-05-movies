@@ -1,28 +1,25 @@
 import { Outlet } from "react-router-dom";
-import { Container, Header, Logo, Link } from "./App.styled";
+import { Main, Container, Header, Logo, StyledNavLink, StyledLink } from './App.styled';
 
 export default function SharedLayout() {
   return (
     <Container>
       <Header>
         <Logo>
-          <span role="img" aria-label="computer icon">
-            <svg>
-              <useref></useref>
-            </svg>
-          </span>{" "}
-          MovieMuse
+          <StyledLink to="/">
+            <img src="https://svgsilh.com/svg/146007.svg" alt="logo" />
+            ovieMuse
+          </StyledLink>
         </Logo>
         <nav>
-          <Link to="">Home</Link>
-          <Link to="/movies">Movies</Link>
-          <Link to="/about">About us</Link>
+          <StyledNavLink to="/">Home</StyledNavLink>
+          <StyledNavLink to="/movies">Movies</StyledNavLink>
+          <StyledNavLink to="/about">About</StyledNavLink>
         </nav>
       </Header>
-      <main>
+      <Main>
         <Outlet />
-      </main>
-      
+      </Main>
     </Container>
   );
 };
