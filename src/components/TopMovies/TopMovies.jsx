@@ -4,27 +4,27 @@ import MovieLink from '../MovieLink/MovieLink';
 import { MoviesList } from './TopMovies.styled';
 import getTop from '../../movie-API/getTop';
 
-const TopMovies = () => {
-  const [movies, setFilms] = useState(async () => {
-    const { results } = await getTop();
-    setFilms(results);
-  });
+export default function TopMovies() {
+  const [movies, setFilms] = useState([]);
+
+  useEffect(() => {
+
+    const getData = async () => {
+      const { results } = await getTop();
+      setFilms(results);
+    }
+
+    getData();
+  }, []);
 
   return (
     <MoviesList>
-      {movies.map(({ id, webformatURL, largeImageURL, tags }) => (
-        <MovieLink
-          key={id}
-          previewImg={webformatURL}
-          largeImg={largeImageURL}
-          tags={tags}
-        />
+      {movies.map(({ id, title, poster_path }) => (
+        <MovieLink key={id} title={title} poster_path={poster_path} />
       ))}
     </MoviesList>
   );
 };
-
-export default TopMovies;
 
 // TopMovies.propTypes = {
 //   images: PropTypes.arrayOf(

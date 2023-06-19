@@ -1,8 +1,9 @@
 @import-normalize;
 
 body {
-  background: linear-gradient(#e66465, #9198e5);
-  height: 100vh;
+  background: linear-gradient(#eb9696, #9198e5);
+  background-size:cover;
+  min-height: 100vh;
   font-family: sans-serif;
   line-height: 1.5;
 }
