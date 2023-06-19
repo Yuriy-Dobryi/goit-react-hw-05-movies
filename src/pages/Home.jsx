@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import getTop from '../movie-API/getTop'
+import  TopMovies  from '../components/TopMovies/TopMovies';
 
 export default function Home() {
-  const [films, setFilms] = useState(async () => {
-    const { results } = await getTop();
-    setFilms(results);
-    console.log(films);
-  });
-  
-  return <div>Presenting the epitome of today's the most popular films:</div>;
+
+  return (
+    <>
+      <h1>Presenting the epitome of today's the most popular films:
+      </h1>
+      <TopMovies />
+    </>
+  );
 }
