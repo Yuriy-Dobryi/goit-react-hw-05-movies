@@ -29,7 +29,7 @@ export default function MovieInfo() {
         name,
         release_date,
         rating,
-        genres: genres.map(({ name }) => name).join(''),
+        genres: genres.map(({ name }) => name).join(' '),
         overview,
         tagline,
       });

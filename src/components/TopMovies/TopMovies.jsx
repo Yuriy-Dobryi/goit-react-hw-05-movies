@@ -1,30 +1,44 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import moviesDatabase from 'API/moviesDatabase';
-import Movie from '../Movie/Movie';
-import { MoviesList } from './TopMovies.styled';
+import PreviewMovie from '../Movie/PreviewMovie';
+import { MoviesList, Wrapper } from './TopMovies.styled';
 
 const TOP_MOVIES_PATH = 'trending/all/day';
 
 export default function TopMovies() {
-  const [movies, setFilms] = useState([]);
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
       const { results } = await moviesDatabase(TOP_MOVIES_PATH);
-      setFilms(results);
+      const moviesData = results.map(
+        ({ id, poster_path, title, name, tagline }) => ({
+          id,
+          poster_path,
+          title,
+          name,
+          tagline,
+        })
+      );
+      setMovies(moviesData);
     }
-
     getData();
   }, []);
 
   return (
     <MoviesList>
-      {movies.map(({ id, poster_path, title, name }) => (
-        <Movie key={id}
-          id={id}
-          title={title}
-          name={name}
-          poster_path={poster_path} />
+      {movies.map(({ id, title, name, poster_path, tagline }) => (
+        <Wrapper key={id}>
+          <Link to={`/movies/${id}`}>
+            <PreviewMovie
+              title={title}
+              name={name}
+              poster_path={poster_path}
+              tagline={tagline}
+            />
+          </Link>
+        </Wrapper>
       ))}
     </MoviesList>
   );
