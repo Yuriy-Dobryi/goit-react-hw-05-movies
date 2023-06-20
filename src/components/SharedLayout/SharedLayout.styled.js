@@ -25,16 +25,8 @@ export const Header = styled.header`
   }
 `;
 
-export const Logo = styled.p`
-  display: flex;
-  align-items: center;
-  font-size: 30px;
-  font-weight: 700;
-  margin: 0;
-  & img {
-    width: 60px;
-    height: 60px;
-  }
+export const Logo = styled.img`
+  width: 220px;
 `;
 
 export const StyledNavLink = styled(NavLink)`
