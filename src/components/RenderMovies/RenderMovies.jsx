@@ -1,17 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import moviesDatabase from 'API/moviesDatabase';
-import PreviewMovie from '../Movie/PreviewMovie';
-import { MoviesList, Wrapper } from './TopMovies.styled';
 
-const TOP_MOVIES_PATH = 'trending/all/day';
+import Moviedb_API from 'services/Moviedb_API';
+import PreviewMovie from '../PreviewMovie/PreviewMovie';
+import { MoviesList, Wrapper } from './RenderMovies.styled';
 
-export default function TopMovies() {
+export default function RenderMovies({ path, query }) {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
-      const { results } = await moviesDatabase(TOP_MOVIES_PATH);
+      const { results } = await Moviedb_API(path, query);
       const moviesData = results.map(
         ({ id, poster_path, title, name, tagline }) => ({
           id,
@@ -22,9 +21,9 @@ export default function TopMovies() {
         })
       );
       setMovies(moviesData);
-    }
+    };
     getData();
-  }, []);
+  }, [path, query]);
 
   return (
     <MoviesList>

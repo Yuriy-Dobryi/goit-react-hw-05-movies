@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import moviesDatabase from 'API/moviesDatabase';
+import Moviedb_API from 'services/Moviedb_API';
 import defaultImage from 'images/default.png'
 
 export default function MovieInfo() {
@@ -22,7 +22,7 @@ export default function MovieInfo() {
         genres,
         overview,
         tagline,
-      } = await moviesDatabase(`movie/${movieID}`);
+      } = await Moviedb_API(`movie/${movieID}`);
       setMovieInfo({
         poster_path,
         title,
