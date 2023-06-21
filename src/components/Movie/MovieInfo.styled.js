@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 
 export const Poster = styled.img`
   width: 500px;
-`
+`;
 
 export const InfoList = styled.ul`
   align-self: center;

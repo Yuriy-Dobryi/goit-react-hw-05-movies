@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-
 import Moviedb_API from 'services/Moviedb_API';
 import PreviewMovie from '../Movie/PreviewMovie';
-import { MoviesList, Wrapper } from './RenderMovies.styled';
+import { MoviesList, Wrapper, LinkStyled } from './RenderMovies.styled';
 
 export default function RenderMovies({ path, query }) {
   const [movies, setMovies] = useState([]);
@@ -29,14 +27,14 @@ export default function RenderMovies({ path, query }) {
     <MoviesList>
       {movies.map(({ id, title, name, poster_path, tagline }) => (
         <Wrapper key={id}>
-          <Link to={`/movies/${id}`}>
+          <LinkStyled to={`/movies/${id}`}>
             <PreviewMovie
               title={title}
               name={name}
               poster_path={poster_path}
               tagline={tagline}
             />
-          </Link>
+          </LinkStyled>
         </Wrapper>
       ))}
     </MoviesList>

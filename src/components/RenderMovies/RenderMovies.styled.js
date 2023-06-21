@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const MoviesList = styled.ul`
@@ -6,7 +7,6 @@ export const MoviesList = styled.ul`
   max-width: calc(100vw - 48px);
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 25px;
-  list-style: none;
 `;
 
 export const Wrapper = styled.li`
@@ -21,4 +21,12 @@ export const Wrapper = styled.li`
     transform: scale(1.03);
     cursor: pointer;
   }
+`;
+
+export const LinkStyled = styled(Link)`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+  height: 100%;
 `;

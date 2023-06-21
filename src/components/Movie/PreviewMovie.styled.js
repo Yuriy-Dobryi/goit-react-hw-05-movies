@@ -1,18 +1,14 @@
 import styled from 'styled-components';
 
-export const NameWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+export const Poster = styled.img`
+  align-self: flex-start;
+  object-fit: cover;
+  border-radius: 20px;
 `;
 
-export const Name = styled.p`
+export const Title = styled.p`
+  align-self: flex-start;
   padding: 5px;
   font-size: 22px;
   text-align: center;
-`;
-
-export const Poster = styled.img`
-  object-fit: cover;
-  border-radius: 20px;
 `;
