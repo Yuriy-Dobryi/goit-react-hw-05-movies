@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Moviedb_API from 'services/Moviedb_API';
-import defaultImage from 'images/default.png'
+import { Wrapper, Poster, InfoList, Item } from '../components/Movie/MovieInfo.styled';
+import defaultImage from 'images/default.png';
 
 export default function MovieInfo() {
   const [movieInfo, setMovieInfo] = useState({});
@@ -50,8 +51,8 @@ export default function MovieInfo() {
   } = movieInfo;
 
   return (
-    <div>
-      <img
+    <Wrapper>
+      <Poster
         src={
           poster_path
             ? `https://image.tmdb.org/t/p/w500/${poster_path}`
@@ -59,13 +60,13 @@ export default function MovieInfo() {
         }
         alt={tagline ? tagline : 'Tagline coming soon'}
       />
-      <div>
-        <p>{title ? title : name}</p>
-        <p>{release_date ? release_date : 'Release date coming soon'}</p>
-        <p>{rating ? rating : 'Rating coming soon'}</p>
-        <p>{genres ? genres : 'Genres coming soon'}</p>
-        <p>{overview ? overview : 'Overview coming soon'}</p>
-      </div>
-    </div>
+      <InfoList>
+        <Item>{title ? title : name}</Item>
+        <Item>{release_date ? release_date : 'Release date coming soon'}</Item>
+        <Item>{rating ? rating : 'Rating coming soon'}</Item>
+        <Item>{genres ? genres : 'Genres coming soon'}</Item>
+        <Item>{overview ? overview : 'Overview coming soon'}</Item>
+      </InfoList>
+    </Wrapper>
   );
 }

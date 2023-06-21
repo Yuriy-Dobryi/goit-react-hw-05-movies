@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import Moviedb_API from 'services/Moviedb_API';
-import PreviewMovie from '../PreviewMovie/PreviewMovie';
+import PreviewMovie from '../Movie/PreviewMovie';
 import { MoviesList, Wrapper } from './RenderMovies.styled';
 
 export default function RenderMovies({ path, query }) {

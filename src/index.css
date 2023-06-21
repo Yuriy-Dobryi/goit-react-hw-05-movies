@@ -32,6 +32,6 @@ a {
   text-decoration: none;
 }
 
-svg {
-  display: block;
+ul {
+  list-style: none;
 }
