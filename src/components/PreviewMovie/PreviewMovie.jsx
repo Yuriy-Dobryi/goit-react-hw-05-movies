@@ -1,4 +1,4 @@
-import { Name, Poster } from './PreviewMovie.styled';
+import { Name, Poster, NameWrapper } from './PreviewMovie.styled';
 import defaultImage from '../../images/default.png';
 
 export default function Movie({ title, name, poster_path, tagline }) {
@@ -7,12 +7,12 @@ export default function Movie({ title, name, poster_path, tagline }) {
   return (
     <>
       <Poster
-        src={imageUrl ? imageUrl : defaultImage}
+        src={poster_path ? imageUrl : defaultImage}
         alt={tagline ? tagline : 'Image coming soon'}
       />
-      <div>
+      <NameWrapper>
         <Name>{title ? title : name}</Name>
-      </div>
+      </NameWrapper>
     </>
   );
 }

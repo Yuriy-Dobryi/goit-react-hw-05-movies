@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export default function About() {
   return (
     <Wrapper>
-      <h2>About Us</h2>
+      <h2>About service</h2>
       <p>
         Welcome to the MovieMuse, where you can explore a vast collection of
         movie reviews, detailed information about films, and insights into

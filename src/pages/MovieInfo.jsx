@@ -59,11 +59,13 @@ export default function MovieInfo() {
         }
         alt={tagline ? tagline : 'Tagline coming soon'}
       />
-      <p>{title ? title : name}</p>
-      <p>{release_date}</p>
-      <p>{rating ? rating : 'No rating'}</p>
-      <p>{genres ? genres : 'No genres'}</p>
-      <p>{overview}</p>
+      <div>
+        <p>{title ? title : name}</p>
+        <p>{release_date ? release_date : 'Release date coming soon'}</p>
+        <p>{rating ? rating : 'Rating coming soon'}</p>
+        <p>{genres ? genres : 'Genres coming soon'}</p>
+        <p>{overview ? overview : 'Overview coming soon'}</p>
+      </div>
     </div>
   );
 }

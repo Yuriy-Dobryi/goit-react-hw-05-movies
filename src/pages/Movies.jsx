@@ -6,12 +6,12 @@ export default function Movies() {
   const [movieName, setMovieName] = useState('');
 
   return (
-    <section>
+    <>
       <Search onSubmitSearch={setMovieName} />
 
       {movieName && <RenderMovies
         path={`search/movie`}
         query={movieName} />}
-    </section>
+    </>
   );
 }
