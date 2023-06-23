@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default async function Moviedb_API(path, query) {
+export default async function getMoviedb_API(path, query) {
   const URL = `https://api.themoviedb.org/3/${path}`;
   const config = {
     params: {

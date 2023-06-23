@@ -1,12 +1,17 @@
 import { useState, useEffect } from 'react';
-import Moviedb_API from 'services/Moviedb_API';
+import { useLocation } from 'react-router-dom';
+import { TailSpin } from 'react-loader-spinner';
+import Moviedb_API from 'services/getMoviedb_API';
 import PreviewMovie from '../Movie/PreviewMovie';
 import { MoviesList, Wrapper, LinkStyled } from './RenderMovies.styled';
 
 export default function RenderMovies({ path, query }) {
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
+    setIsLoading(true);
     const getData = async () => {
       const { results } = await Moviedb_API(path, query);
       const moviesData = results.map(
@@ -19,24 +24,31 @@ export default function RenderMovies({ path, query }) {
         })
       );
       setMovies(moviesData);
+      setIsLoading(false);
     };
     getData();
   }, [path, query]);
 
   return (
-    <MoviesList>
-      {movies.map(({ id, title, name, poster_path, tagline }) => (
-        <Wrapper key={id}>
-          <LinkStyled to={`/movies/${id}`}>
-            <PreviewMovie
-              title={title}
-              name={name}
-              poster_path={poster_path}
-              tagline={tagline}
-            />
-          </LinkStyled>
-        </Wrapper>
-      ))}
-    </MoviesList>
+    <>
+      {isLoading ? (
+        <TailSpin />
+      ) : (
+        <MoviesList>
+          {movies.map(({ id, title, name, poster_path, tagline }) => (
+            <Wrapper key={id}>
+              <LinkStyled to={`/movies/${id}`} state={{ from: location }}>
+                <PreviewMovie
+                  title={title}
+                  name={name}
+                  poster_path={poster_path}
+                  tagline={tagline}
+                />
+              </LinkStyled>
+            </Wrapper>
+          ))}
+        </MoviesList>
+      )}
+    </>
   );
 }

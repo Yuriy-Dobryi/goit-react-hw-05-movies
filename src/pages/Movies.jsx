@@ -1,17 +1,21 @@
-import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Search from 'components/Search/Search';
 import RenderMovies from '../components/RenderMovies/RenderMovies';
 
 export default function Movies() {
-  const [movieName, setMovieName] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const movieName = searchParams.get('name') ?? '';
+
+  function updateParams(name) {
+    const nextParams = name !== '' ? { name } : {};
+    setSearchParams(nextParams);
+  };
 
   return (
     <>
-      <Search onSubmitSearch={setMovieName} />
+      <Search updateParams={updateParams} />
 
-      {movieName && <RenderMovies
-        path={`search/movie`}
-        query={movieName} />}
+      {movieName && <RenderMovies path={`search/movie`} query={movieName} />}
     </>
   );
 }

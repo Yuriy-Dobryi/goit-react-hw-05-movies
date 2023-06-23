@@ -1,4 +1,10 @@
+import { FiCornerUpLeft } from 'react-icons/fi';
 import styled from 'styled-components';
+
+export const IconBack = styled(FiCornerUpLeft)`
+  width: 40px;
+  height: 40px;
+`;
 
 export const Wrapper = styled.div`
   display: flex;

@@ -1,18 +1,15 @@
 import { useState } from 'react';
 import { Form, Input, Btn, Label } from './Search.styled';
 
-export default function Search({ onSubmitSearch }) {
+export default function Search({ updateParams }) {
   const [search, setSearch] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     const trimmedSearch = search.trim();
 
-    if (!trimmedSearch) {
-      return;
-    }
-    onSubmitSearch(trimmedSearch);
-  }
+    updateParams(trimmedSearch);
+  };
 
   return (
     <Form onSubmit={handleSubmit}>
