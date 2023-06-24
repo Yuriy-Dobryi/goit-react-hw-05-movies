@@ -19,7 +19,7 @@ export const Form = styled.form`
 export const Input = styled.input`
   display: inline-block;
   width: 100%;
-  padding: 0 15px;
+  padding-left: 15px;
   font: inherit;
   font-size: 20px;
   border: none;
@@ -53,7 +53,6 @@ export const Btn = styled.button`
   background-repeat: no-repeat;
   background-position: center;
   opacity: 0.6;
-  cursor: pointer;
   outline: none;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
-import Moviedb_API from 'services/getMoviedb_API';
+
+import { getMoviedb_API, spinStyles } from 'services';
 import PreviewMovie from '../Movie/PreviewMovie';
 import { MoviesList, Wrapper, LinkStyled } from './RenderMovies.styled';
 
@@ -12,8 +13,9 @@ export default function RenderMovies({ path, query }) {
 
   useEffect(() => {
     setIsLoading(true);
+
     const getData = async () => {
-      const { results } = await Moviedb_API(path, query);
+      const { results } = await getMoviedb_API(path, query);
       const moviesData = results.map(
         ({ id, poster_path, title, name, tagline }) => ({
           id,
@@ -24,6 +26,7 @@ export default function RenderMovies({ path, query }) {
         })
       );
       setMovies(moviesData);
+
       setIsLoading(false);
     };
     getData();
@@ -31,10 +34,9 @@ export default function RenderMovies({ path, query }) {
 
   return (
     <>
-      {isLoading ? (
-        <TailSpin />
-      ) : (
-        <MoviesList>
+      {isLoading
+        ? (<TailSpin {...spinStyles} />)
+        : <MoviesList>
           {movies.map(({ id, title, name, poster_path, tagline }) => (
             <Wrapper key={id}>
               <LinkStyled to={`/movies/${id}`} state={{ from: location }}>
@@ -47,8 +49,7 @@ export default function RenderMovies({ path, query }) {
               </LinkStyled>
             </Wrapper>
           ))}
-        </MoviesList>
-      )}
+        </MoviesList>}
     </>
   );
 }

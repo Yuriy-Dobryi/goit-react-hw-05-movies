@@ -1,13 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLocation, useParams, Link } from 'react-router-dom';
-import {  } from 'react-router-dom';
+import { TailSpin } from 'react-loader-spinner';
 
-import Moviedb_API from 'services/getMoviedb_API';
+import { getMoviedb_API, getYearFromDate, getDecimal, getString, spinStyles } from 'services';
 import { IconBack, Wrapper, Poster, InfoList, Item } from '../components/Movie/MovieInfo.styled';
 import defaultImage from 'images/default.png';
 
 export default function MovieInfo() {
   const [movieInfo, setMovieInfo] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
   const { id: movieID } = useParams();
   const location = useLocation();
   const backLink = useRef(location.state?.from ?? '/movies');
@@ -16,68 +18,55 @@ export default function MovieInfo() {
     if (!movieID) {
       return;
     }
+    setIsLoading(true);
 
     async function getMovieInfo() {
-      const {
-        poster_path,
-        title,
-        name,
-        release_date,
-        vote_average: rating,
-        genres,
-        overview,
-        tagline,
-      } = await Moviedb_API(`movie/${movieID}`);
+      const data = await getMoviedb_API(`movie/${movieID}`);
       setMovieInfo({
-        poster_path,
-        title,
-        name,
-        release_date,
-        rating,
-        genres: genres.map(({ name }) => name).join(' '),
-        overview,
-        tagline,
+        imgPath: data.poster_path,
+        title: data.title,
+        name: data.name,
+        year: getYearFromDate(data.release_date),
+        rating: getDecimal(data.vote_average),
+        genres: getString(data.genres, 'name'),
+        overview: data.overview,
+        tagline: data.tagline,
       });
+
+      setIsLoading(false);
     }
 
     getMovieInfo();
   }, [movieID]);
 
-  const {
-    poster_path,
-    title,
-    name,
-    release_date,
-    rating,
-    genres,
-    overview,
-    tagline,
-  } = movieInfo;
+  const { imgPath, title, name, year, rating, genres, overview, tagline } =
+    movieInfo;
 
   return (
     <>
       <Link to={backLink.current}>
         <IconBack />
       </Link>
-      <Wrapper>
-        <Poster
-          src={
-            poster_path
-              ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-              : defaultImage
-          }
-          alt={tagline ? tagline : 'Tagline coming soon'}
-        />
-        <InfoList>
-          <Item>{title ? title : name}</Item>
-          <Item>
-            {release_date ? release_date : 'Release date coming soon'}
-          </Item>
-          <Item>{rating ? rating : 'Rating coming soon'}</Item>
-          <Item>{genres ? genres : 'Genres coming soon'}</Item>
-          <Item>{overview ? overview : 'Overview coming soon'}</Item>
-        </InfoList>
-      </Wrapper>
+      
+      {isLoading
+        ? <TailSpin {...spinStyles} />
+        : <Wrapper>
+          <Poster
+            src={
+              imgPath
+                ? `https://image.tmdb.org/t/p/w500/${imgPath}`
+                : defaultImage
+            }
+            alt={tagline ? tagline : 'Tagline coming soon'}
+          />
+          <InfoList>
+            <Item>{title ? title : name}</Item>
+            <Item>{year ? year : ''}</Item>
+            <Item>{rating ? rating : ''}</Item>
+            <Item>{genres ? genres : ''}</Item>
+            <Item>{overview ? overview : ''}</Item>
+          </InfoList>
+        </Wrapper>}
     </>
   );
 }

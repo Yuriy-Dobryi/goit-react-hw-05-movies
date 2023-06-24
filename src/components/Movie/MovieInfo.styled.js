@@ -10,11 +10,13 @@ export const Wrapper = styled.div`
   display: flex;
   column-gap: 20px;
   padding-right: 20px;
-  background-color: #292d33;
+  background-color: #6a7d98;
+  border-radius: 20px;
 `;
 
 export const Poster = styled.img`
   width: 500px;
+  border-radius: 20px;
 `;
 
 export const InfoList = styled.ul`
