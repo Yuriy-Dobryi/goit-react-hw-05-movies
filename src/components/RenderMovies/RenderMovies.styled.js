@@ -5,7 +5,7 @@ export const MoviesList = styled.ul`
   margin-top: 30px;
   display: grid;
   max-width: calc(100vw - 48px);
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 25px;
 `;
 
@@ -19,7 +19,6 @@ export const Wrapper = styled.li`
 
   &:hover {
     transform: scale(1.03);
-    cursor: pointer;
   }
 `;
 
@@ -27,6 +26,5 @@ export const LinkStyled = styled(Link)`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  
   height: 100%;
 `;

@@ -2,12 +2,18 @@ import { FiCornerUpLeft } from 'react-icons/fi';
 import styled from 'styled-components';
 
 export const IconBack = styled(FiCornerUpLeft)`
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: scale(1.3);
+  }
 `;
 
 export const Wrapper = styled.div`
   display: flex;
+  align-items: center;
   column-gap: 20px;
   padding-right: 20px;
   background-color: #6a7d98;
@@ -15,13 +21,9 @@ export const Wrapper = styled.div`
 `;
 
 export const Poster = styled.img`
-  width: 500px;
+  width: 400px;
+  min-height: 350px;
   border-radius: 20px;
-`;
-
-export const InfoList = styled.ul`
-  align-self: center;
-  text-align: center;
 `;
 
 export const Item = styled.li`

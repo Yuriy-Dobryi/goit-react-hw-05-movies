@@ -14,7 +14,7 @@ export default function RenderMovies({ path, query }) {
   useEffect(() => {
     setIsLoading(true);
 
-    const getData = async () => {
+    (async function getData() {
       const { results } = await getMoviedb_API(path, query);
       const moviesData = results.map(
         ({ id, poster_path, title, name, tagline }) => ({
@@ -26,10 +26,10 @@ export default function RenderMovies({ path, query }) {
         })
       );
       setMovies(moviesData);
-
+      
       setIsLoading(false);
-    };
-    getData();
+    })();
+
   }, [path, query]);
 
   return (

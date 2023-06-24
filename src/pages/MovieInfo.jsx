@@ -3,7 +3,7 @@ import { useLocation, useParams, Link } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
 
 import { getMoviedb_API, getYearFromDate, getDecimal, getString, spinStyles } from 'services';
-import { IconBack, Wrapper, Poster, InfoList, Item } from '../components/Movie/MovieInfo.styled';
+import { IconBack, Wrapper, Poster, Item } from '../components/Movie/MovieInfo.styled';
 import defaultImage from 'images/default.png';
 
 export default function MovieInfo() {
@@ -20,7 +20,7 @@ export default function MovieInfo() {
     }
     setIsLoading(true);
 
-    async function getMovieInfo() {
+    (async function getMovieInfo() {
       const data = await getMoviedb_API(`movie/${movieID}`);
       setMovieInfo({
         imgPath: data.poster_path,
@@ -34,9 +34,8 @@ export default function MovieInfo() {
       });
 
       setIsLoading(false);
-    }
+    })();
 
-    getMovieInfo();
   }, [movieID]);
 
   const { imgPath, title, name, year, rating, genres, overview, tagline } =
@@ -50,23 +49,24 @@ export default function MovieInfo() {
       
       {isLoading
         ? <TailSpin {...spinStyles} />
-        : <Wrapper>
-          <Poster
-            src={
-              imgPath
-                ? `https://image.tmdb.org/t/p/w500/${imgPath}`
-                : defaultImage
-            }
-            alt={tagline ? tagline : 'Tagline coming soon'}
-          />
-          <InfoList>
-            <Item>{title ? title : name}</Item>
-            <Item>{year ? year : ''}</Item>
-            <Item>{rating ? rating : ''}</Item>
-            <Item>{genres ? genres : ''}</Item>
-            <Item>{overview ? overview : ''}</Item>
-          </InfoList>
-        </Wrapper>}
+        : (
+          <Wrapper>
+            <Poster
+              src={
+                imgPath
+                  ? `https://image.tmdb.org/t/p/w500/${imgPath}`
+                  : defaultImage
+              }
+              alt={tagline ? tagline : 'Tagline coming soon'}
+            />
+            <ul>
+              <Item>{title ? title : name}</Item>
+              <Item>{year ? year : ''}</Item>
+              <Item>{rating ? rating : ''}</Item>
+              <Item>{genres ? genres : ''}</Item>
+              <Item>{overview ? overview : ''}</Item>
+            </ul>
+          </Wrapper>)}
     </>
   );
 }

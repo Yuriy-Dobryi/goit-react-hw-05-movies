@@ -1,14 +1,13 @@
-import { useState } from 'react';
-import { Form, Input, Btn, Label } from './Search.styled';
+import { Form, Input, Btn, SearchIcon } from './Search.styled';
 
 export default function Search({ updateParams }) {
-  const [search, setSearch] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
-    const trimmedSearch = search.trim();
+    const form = e.currentTarget;
+    const search = form.elements.search.value;
 
-    updateParams(trimmedSearch);
+    updateParams(search.trim());
   };
 
   return (
@@ -16,14 +15,12 @@ export default function Search({ updateParams }) {
       <Input
         name="search"
         type="text"
-        value={search}
-        onChange={({ target }) => setSearch(target.value)}
         autoComplete="off"
         autoFocus
         placeholder="Search movies"
       />
       <Btn type="submit">
-        <Label>Search</Label>
+        <SearchIcon />
       </Btn>
     </Form>
   );

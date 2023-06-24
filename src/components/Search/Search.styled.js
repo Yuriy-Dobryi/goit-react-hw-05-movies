@@ -1,10 +1,27 @@
 import styled from 'styled-components';
+import { AiOutlineSearch } from 'react-icons/ai';
+
+export const Btn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  border: none;
+  background: none;
+  outline: none;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: scale(1.3);
+  }
+`;
 
 export const Form = styled.form`
   display: flex;
   align-items: center;
   width: 400px;
   margin: 0 auto;
+  padding: 0 15px;
   background-color: white;
   overflow: hidden;
   border-radius: 30px;
@@ -12,14 +29,16 @@ export const Form = styled.form`
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
   &:focus-within {
-    outline: 7px solid #ae8fd0;
+    outline: 5px solid #ae8fd0;
+    
+    ${Btn} {
+      transform: scale(1.3);
+    }
   }
 `;
 
 export const Input = styled.input`
-  display: inline-block;
   width: 100%;
-  padding-left: 15px;
   font: inherit;
   font-size: 20px;
   border: none;
@@ -31,32 +50,7 @@ export const Input = styled.input`
   }
 `;
 
-export const Label = styled.label`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  clip-path: inset(50%);
-  border: 0;
-  `;
-
-export const Btn = styled.button`
-  display: inline-block;
-  width: 48px;
-  height: 48px;
-  border: none;
-  background-image: url('https://img.freepik.com/premium-vector/search-icon-magnifying-glass-symbol-outline-icon_543062-139.jpg');
-  background-size: 40%;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.6;
-  outline: none;
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover {
-    opacity: 1;
-  }
+export const SearchIcon = styled(AiOutlineSearch)`
+  width: 25px;
+  height: 25px;
 `;
