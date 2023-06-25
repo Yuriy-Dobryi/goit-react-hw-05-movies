@@ -1,13 +1,9 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import {
-  Main,
-  Container,
-  Header,
-  Logo,
-  StyledNavLink,
-  StyledLink,
-} from './SharedLayout.styled';
+import { TailSpin } from 'react-loader-spinner';
+
+import { spinStyles } from 'services';
+import { Container, Header, Main, Logo, StyledNavLink, StyledLink } from './SharedLayout.styled';
 import logoImage from '../../images/logo.png';
 
 export default function SharedLayout() {
@@ -25,7 +21,7 @@ export default function SharedLayout() {
       </Header>
 
       <Main>
-        <Suspense>
+        <Suspense fallback={<TailSpin {...spinStyles} />}>
           <Outlet />
         </Suspense>
       </Main>

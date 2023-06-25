@@ -6,7 +6,7 @@ import { getMoviedb_API, spinStyles } from 'services';
 import PreviewMovie from '../Movie/PreviewMovie';
 import { MoviesList, Wrapper, LinkStyled } from './RenderMovies.styled';
 
-export default function RenderMovies({ path, query }) {
+export default function RenderMovies({ API_path, query }) {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
@@ -15,7 +15,7 @@ export default function RenderMovies({ path, query }) {
     setIsLoading(true);
 
     (async function getData() {
-      const { results } = await getMoviedb_API(path, query);
+      const { results } = await getMoviedb_API(API_path, query);
       const moviesData = results.map(
         ({ id, poster_path, title, name, tagline }) => ({
           id,
@@ -26,17 +26,17 @@ export default function RenderMovies({ path, query }) {
         })
       );
       setMovies(moviesData);
-      
+
       setIsLoading(false);
     })();
-
-  }, [path, query]);
-
+  }, [API_path, query]);
+  
   return (
     <>
-      {isLoading
-        ? (<TailSpin {...spinStyles} />)
-        : <MoviesList>
+      {isLoading ? (
+        <TailSpin {...spinStyles} />
+      ) : (
+        <MoviesList>
           {movies.map(({ id, title, name, poster_path, tagline }) => (
             <Wrapper key={id}>
               <LinkStyled to={`/movies/${id}`} state={{ from: location }}>
@@ -49,7 +49,8 @@ export default function RenderMovies({ path, query }) {
               </LinkStyled>
             </Wrapper>
           ))}
-        </MoviesList>}
+        </MoviesList>
+      )}
     </>
   );
 }

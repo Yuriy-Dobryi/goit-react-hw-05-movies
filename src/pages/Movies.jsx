@@ -15,7 +15,7 @@ export default function Movies() {
     <>
       <Search updateParams={updateParams} />
 
-      {movieName && <RenderMovies path={`search/movie`} query={movieName} />}
+      {movieName && <RenderMovies API_path={`search/movie`} query={movieName} />}
     </>
   );
 }

@@ -9,10 +9,8 @@ const Title = styled.h1`
 export default function Home() {
   return (
     <>
-      <Title>
-        Presenting the epitome of today's the most popular films:
-      </Title>
-      <RenderMovies path={'trending/all/day'} />
+      <Title>Presenting the epitome of today's the most popular films:</Title>
+      <RenderMovies API_path={'trending/all/day'} />
     </>
   );
 }

@@ -10,18 +10,18 @@ export default function MovieInfo() {
   const [movieInfo, setMovieInfo] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const { id: movieID } = useParams();
+  const { id } = useParams();
   const location = useLocation();
   const backLink = useRef(location.state?.from ?? '/movies');
 
   useEffect(() => {
-    if (!movieID) {
+    if (!id) {
       return;
     }
     setIsLoading(true);
 
     (async function getMovieInfo() {
-      const data = await getMoviedb_API(`movie/${movieID}`);
+      const data = await getMoviedb_API(`movie/${id}`);
       setMovieInfo({
         imgPath: data.poster_path,
         title: data.title,
@@ -35,11 +35,10 @@ export default function MovieInfo() {
 
       setIsLoading(false);
     })();
+    
+  }, [id]);
 
-  }, [movieID]);
-
-  const { imgPath, title, name, year, rating, genres, overview, tagline } =
-    movieInfo;
+  const { imgPath, title, name, year, rating, genres, overview, tagline } = movieInfo;
 
   return (
     <>
