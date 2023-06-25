@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[415],{5415:function(e,t,n){n.r(t),n.d(t,{default:function(){return h}});var r,a=n(168),o=n(702),l=n(5867),s=n(184),c=l.ZP.h1(r||(r=(0,a.Z)(["\n  color: #424254;\n  text-align: center;\n"])));function h(){return(0,s.jsxs)(s.Fragment,{children:[(0,s.jsx)(c,{children:"Presenting the epitome of today's the most popular films:"}),(0,s.jsx)(o.Z,{path:"trending/all/day"})]})}}}]);
-//# sourceMappingURL=415.b7e0121b.chunk.js.map
