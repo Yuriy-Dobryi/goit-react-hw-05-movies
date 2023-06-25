@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const MoviesList = styled.ul`
-  margin-top: 30px;
+export const Ul = styled.ul`
   display: grid;
+  margin-top: 30px;
   max-width: calc(100vw - 48px);
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 25px;
 `;
 
-export const Wrapper = styled.li`
+export const Li = styled.li`
   color: white;
   background-color: #5b4865;
   border-radius: 20px;

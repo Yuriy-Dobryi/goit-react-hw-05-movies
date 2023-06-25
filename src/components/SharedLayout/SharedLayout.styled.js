@@ -11,7 +11,7 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 0;
+  padding: 20px 0;
   border-bottom: 5px solid black;
 
   > nav {
@@ -31,7 +31,7 @@ export const StyledNavLink = styled(NavLink)`
   padding: 8px 16px;
   border-radius: 40px;
   color: black;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 600;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 

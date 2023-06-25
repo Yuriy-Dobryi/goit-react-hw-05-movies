@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
+import PropTypes from 'prop-types';
 
 import { getMoviedb_API, spinStyles } from 'services';
 import PreviewMovie from '../Movie/PreviewMovie';
-import { MoviesList, Wrapper, LinkStyled } from './RenderMovies.styled';
+import { Ul, Li, LinkStyled } from './MoviesList.styled';
 
-export default function RenderMovies({ API_path, query }) {
+export default function MoviesList({ API_path, query }) {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
@@ -30,15 +31,15 @@ export default function RenderMovies({ API_path, query }) {
       setIsLoading(false);
     })();
   }, [API_path, query]);
-  
+
   return (
     <>
       {isLoading ? (
         <TailSpin {...spinStyles} />
       ) : (
-        <MoviesList>
+        <Ul>
           {movies.map(({ id, title, name, poster_path, tagline }) => (
-            <Wrapper key={id}>
+            <Li key={id}>
               <LinkStyled to={`/movies/${id}`} state={{ from: location }}>
                 <PreviewMovie
                   title={title}
@@ -47,10 +48,15 @@ export default function RenderMovies({ API_path, query }) {
                   tagline={tagline}
                 />
               </LinkStyled>
-            </Wrapper>
+            </Li>
           ))}
-        </MoviesList>
+        </Ul>
       )}
     </>
   );
 }
+
+MoviesList.propTypes = {
+  API_path: PropTypes.string.isRequired,
+  query: PropTypes.string,
+};

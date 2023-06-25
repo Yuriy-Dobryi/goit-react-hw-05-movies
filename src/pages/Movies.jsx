@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import Search from 'components/Search/Search';
-import RenderMovies from '../components/RenderMovies/RenderMovies';
+import MoviesList from '../components/MoviesList/MoviesList';
 
 export default function Movies() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -15,7 +15,7 @@ export default function Movies() {
     <>
       <Search updateParams={updateParams} />
 
-      {movieName && <RenderMovies API_path={`search/movie`} query={movieName} />}
+      {movieName && <MoviesList API_path={`search/movie`} query={movieName} />}
     </>
   );
 }

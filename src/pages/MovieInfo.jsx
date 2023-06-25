@@ -56,7 +56,7 @@ export default function MovieInfo() {
                   ? `https://image.tmdb.org/t/p/w500/${imgPath}`
                   : defaultImage
               }
-              alt={tagline ? tagline : 'Tagline coming soon'}
+              alt={tagline ? tagline : 'Poster'}
             />
             <ul>
               <Item>{title ? title : name}</Item>

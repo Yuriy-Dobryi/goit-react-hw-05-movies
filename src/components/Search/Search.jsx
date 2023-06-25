@@ -1,7 +1,7 @@
+import PropTypes from 'prop-types';
 import { Form, Input, Btn, SearchIcon } from './Search.styled';
 
 export default function Search({ updateParams }) {
-
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -16,7 +16,6 @@ export default function Search({ updateParams }) {
         name="search"
         type="text"
         autoComplete="off"
-        autoFocus
         placeholder="Search movies"
       />
       <Btn type="submit">
@@ -25,3 +24,7 @@ export default function Search({ updateParams }) {
     </Form>
   );
 }
+
+Search.propTypes = {
+  updateParams: PropTypes.func.isRequired,
+};
