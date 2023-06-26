@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <Title>Presenting the epitome of today's the most popular films:</Title>
-      <MoviesList API_path={'trending/all/day'} />
+      <MoviesList API_path={'trending/movie/day'} />
     </>
   );
 }

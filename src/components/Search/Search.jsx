@@ -25,5 +25,6 @@ export default function Search({ defValue, onSubmit }) {
 }
 
 Search.propTypes = {
+  defValue: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };

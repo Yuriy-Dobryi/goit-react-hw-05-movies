@@ -1,9 +1,16 @@
-import { useState, useEffect, useRef } from 'react';
-import { useParams, useNavigate, useLocation, Link } from 'react-router-dom';
+import { useState, useEffect, useRef, Suspense } from 'react';
+import { useParams, useNavigate, useLocation, Link, Outlet } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
 
 import { getMoviedb_API, getYearFromDate, getDecimal, getString, spinStyles } from 'services';
-import { IconBack, Wrapper, Poster, Item } from '../components/Movie/MovieInfo.styled';
+import {
+  IconBack,
+  Wrapper,
+  MovieImg,
+  Item,
+  AddInfoWrapper,
+  StyledLink,
+} from '../components/Movie/MovieInfo.styled';
 import defaultImage from 'images/default.png';
 
 export default function MovieInfo() {
@@ -57,27 +64,38 @@ export default function MovieInfo() {
       <Link to={backLink.current}>
         <IconBack />
       </Link>
-      
-      {isLoading ? <TailSpin {...spinStyles} />
-        :
+
+      {isLoading ? (
+        <TailSpin {...spinStyles} />
+      ) : (
         <Wrapper>
-          <Poster
+          <MovieImg
             src={
               imgPath
                 ? `https://image.tmdb.org/t/p/w500/${imgPath}`
                 : defaultImage
             }
-            alt={tagline ? tagline : 'Poster'}
+            alt={tagline ? tagline : 'Movie Image'}
           />
-          <ul>
-            <Item>{title ? title : name}</Item>
-            <Item>{year ? year : ''}</Item>
-            <Item>{rating ? rating : ''}</Item>
-            <Item>{genres ? genres : ''}</Item>
-            <Item>{overview ? overview : ''}</Item>
-          </ul>
+          <div>
+            <ul>
+              <Item>{title ? title : name}</Item>
+              <Item>{year ? year : ''}</Item>
+              <Item>{rating ? rating : ''}</Item>
+              <Item>{genres ? genres : ''}</Item>
+              <Item>{overview ? overview : ''}</Item>
+            </ul>
+            <AddInfoWrapper>
+              <StyledLink to={'cast'}>Cast</StyledLink>
+              <StyledLink to={'reviews'}>Reviews</StyledLink>
+            </AddInfoWrapper>
+          </div>
         </Wrapper>
-      }
+      )}
+
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </>
   );
 }
