@@ -19,14 +19,17 @@ export default function MoviesList({ API_path, query }) {
     (async function getData() {
       try {
         const { results, total_results } = await getMoviedb_API(API_path, query);
+        
         if (total_results === 0) {
           setMovies([]);
           throw new Error('Sorry, no movies found with that name.');
         }
+        if (query) {
+          toast.success(
+            `There are found ${total_results} movies. Currently, only the first page will be displayed, but we are working on pagination with infinite scroll. Stay tuned for updates!`
+          );
+        }
         
-        toast.success(
-          `There are found ${total_results} movies. Currently, only the first page will be displayed, but we are working on pagination with infinite scroll. Stay tuned for updates!`
-        );
         const moviesData = results.map(
           ({ id, poster_path, title, name, tagline }) => ({
             id,
