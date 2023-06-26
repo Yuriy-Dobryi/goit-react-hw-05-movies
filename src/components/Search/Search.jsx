@@ -1,13 +1,11 @@
 import PropTypes from 'prop-types';
 import { Form, Input, Btn, SearchIcon } from './Search.styled';
 
-export default function Search({ updateParams }) {
+export default function Search({ defValue, onSubmit }) {
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
-    const search = form.elements.search.value;
-
-    updateParams(search.trim());
+    onSubmit(form.search.value.trim());
   };
 
   return (
@@ -15,6 +13,7 @@ export default function Search({ updateParams }) {
       <Input
         name="search"
         type="text"
+        defaultValue={defValue}
         autoComplete="off"
         placeholder="Search movies"
       />
@@ -26,5 +25,5 @@ export default function Search({ updateParams }) {
 }
 
 Search.propTypes = {
-  updateParams: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
