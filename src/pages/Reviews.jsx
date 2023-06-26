@@ -1,28 +1,68 @@
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { TailSpin } from 'react-loader-spinner';
 import styled from 'styled-components';
+import { getMoviedb_API, spinStyles } from 'services';
 
 export default function Reviews() {
+  const [reviewsList, setReviewsList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!id) {
+      return;
+    }
+    setIsLoading(true);
+
+    (async function getData() {
+      try {
+        const { results } = await getMoviedb_API(`movie/${id}/reviews`);
+        const data = results.map(({ id, author, content }) => ({ id, author, content }));
+
+        setReviewsList(data);
+      } catch (error) {
+        setError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
+  }, [id]);
+
+  useEffect(() => {
+    if (error) {
+      navigate('*');
+    }
+  }, [error, navigate]);
+
   return (
-    <Wrapper>
-      <h2>About service</h2>
-      <p>
-        Welcome to the MovieMuse, where you can explore a vast collection of
-        movie reviews, detailed information about films, and insights into
-        various actors.
-      </p>
-      <p>
-        Additionally, a dedicated feature is planned to showcase highly
-        anticipated movies that everyone is eagerly awaiting. Stay tuned for the
-        latest updates on upcoming blockbusters and hidden gems.
-      </p>
-    </Wrapper>
+    <>
+      {isLoading ? (
+        <TailSpin {...spinStyles} />
+      ) : (
+        <ul>
+          {reviewsList.map(({ id, author, content }) => (
+            <Wrapper key={id}>
+              <p>{author ? author : 'Guest'}</p>
+              <p>{content ? content : 'No review yet'}</p>
+            </Wrapper>
+          ))}
+        </ul>
+      )}
+    </>
   );
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.li`
+  margin-bottom: 40px;
   padding: 40px;
   font-size: 20px;
   background-color: #292d33;
   color: white;
+  text-align: justify;
   border-radius: 15px;
 
   & p:not(:last-child) {

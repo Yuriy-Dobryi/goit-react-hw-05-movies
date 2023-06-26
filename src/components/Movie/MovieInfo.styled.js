@@ -68,3 +68,4 @@ export const ActorImg = styled.img`
   object-fit: cover;
   border-radius: 20px;
 `;
+

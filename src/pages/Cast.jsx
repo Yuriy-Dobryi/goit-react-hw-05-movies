@@ -4,7 +4,7 @@ import { TailSpin } from 'react-loader-spinner';
 
 import { getMoviedb_API, spinStyles } from 'services';
 import { Ul, Li, ActorImg } from '../components/Movie/MovieInfo.styled';
-import defaultActor from 'images/default.png';
+import defaultActor from 'images/default-actor.png';
 
 export default function Cast() {
   const [actorsList, setActorsList] = useState([]);
@@ -32,8 +32,8 @@ export default function Cast() {
             original_name,
             character,
           }));
+        
         setActorsList(results);
-
       } catch (error) {
         setError(true);
       } finally {

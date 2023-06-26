@@ -11,7 +11,7 @@ import {
   AddInfoWrapper,
   StyledLink,
 } from '../components/Movie/MovieInfo.styled';
-import defaultImage from 'images/default.png';
+import defaultMovie from 'images/default-movie.png';
 
 export default function MovieInfo() {
   const [movieInfo, setMovieInfo] = useState({});
@@ -73,7 +73,7 @@ export default function MovieInfo() {
             src={
               imgPath
                 ? `https://image.tmdb.org/t/p/w500/${imgPath}`
-                : defaultImage
+                : defaultMovie
             }
             alt={tagline ? tagline : 'Movie Image'}
           />
