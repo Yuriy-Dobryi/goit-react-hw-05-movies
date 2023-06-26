@@ -9,8 +9,7 @@ export default function PreviewMovie({ title, name, poster_path, tagline }) {
     <>
       <Poster
         src={poster_path ? imageUrl : defaultImage}
-        alt={tagline ? tagline : 'Poster'}
-      />
+        alt={tagline ? tagline : 'Poster'} />
       <Title>{title ? title : name}</Title>
     </>
   );
