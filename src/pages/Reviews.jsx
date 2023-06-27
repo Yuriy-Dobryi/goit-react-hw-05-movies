@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
 import styled from 'styled-components';
-import { getMoviedb_API, spinStyles } from 'services';
+import { MovieDB_API, spinStyles } from 'services';
+
+const movieDB_API = new MovieDB_API();
 
 export default function Reviews() {
   const [reviewsList, setReviewsList] = useState([]);
@@ -20,7 +22,7 @@ export default function Reviews() {
 
     (async function getData() {
       try {
-        const { results } = await getMoviedb_API(`movie/${id}/reviews`);
+        const { results } = await movieDB_API.getMovieReviews(id);
         const data = results.map(({ id, author, content }) => ({ id, author, content }));
 
         setReviewsList(data);

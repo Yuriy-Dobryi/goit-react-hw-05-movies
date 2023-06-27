@@ -4,11 +4,13 @@ import { TailSpin } from 'react-loader-spinner';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 
-import { getMoviedb_API, spinStyles } from 'services';
+import { MovieDB_API, spinStyles } from 'services';
 import PreviewMovie from '../Movie/PreviewMovie';
 import { Ul, Li, LinkStyled } from './MoviesList.styled';
 
-export default function MoviesList({ API_path, query }) {
+const movieDB_API = new MovieDB_API();
+
+export default function MoviesList({ query }) {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
@@ -18,7 +20,7 @@ export default function MoviesList({ API_path, query }) {
     
     (async function getData() {
       try {
-        const { results, total_results } = await getMoviedb_API(API_path, query);
+        const { results, total_results } = await movieDB_API.getMovies(query);
         
         if (total_results === 0) {
           setMovies([]);
@@ -48,7 +50,7 @@ export default function MoviesList({ API_path, query }) {
       }
     })();
 
-  }, [API_path, query]);
+  }, [query]);
 
   return (
     <>
@@ -74,6 +76,5 @@ export default function MoviesList({ API_path, query }) {
 }
 
 MoviesList.propTypes = {
-  API_path: PropTypes.string.isRequired,
   query: PropTypes.string,
 };

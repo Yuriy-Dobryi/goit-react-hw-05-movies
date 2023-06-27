@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
 
-import { getMoviedb_API, spinStyles } from 'services';
+import { MovieDB_API, spinStyles } from 'services';
 import { Ul, Li, ActorImg } from '../components/Movie/MovieInfo.styled';
 import defaultActor from 'images/default-actor.png';
+
+const movieDB_API = new MovieDB_API();
 
 export default function Cast() {
   const [actorsList, setActorsList] = useState([]);
@@ -22,7 +24,7 @@ export default function Cast() {
 
     (async function getData() {
       try {
-        const { cast } = await getMoviedb_API(`movie/${id}/credits`);
+        const { cast } = await movieDB_API.getMovieCast(id);
         const results = cast
           .slice(0, 12)
           .map(({ id, profile_path, name, original_name, character }) => ({

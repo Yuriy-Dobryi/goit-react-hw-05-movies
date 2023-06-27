@@ -2,7 +2,13 @@ import { useState, useEffect, useRef, Suspense } from 'react';
 import { useParams, useNavigate, useLocation, Link, Outlet } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
 
-import { getMoviedb_API, getYearFromDate, getDecimal, getString, spinStyles } from 'services';
+import {
+  MovieDB_API,
+  getYearFromDate,
+  getDecimal,
+  getString,
+  spinStyles,
+} from 'services';
 import {
   IconBack,
   Wrapper,
@@ -12,6 +18,8 @@ import {
   StyledLink,
 } from '../components/Movie/MovieInfo.styled';
 import defaultMovie from 'images/default-movie.png';
+
+const movieDB_API = new MovieDB_API();
 
 export default function MovieInfo() {
   const [movieInfo, setMovieInfo] = useState({});
@@ -31,7 +39,7 @@ export default function MovieInfo() {
 
     (async function getMovieInfo() {
       try {
-        const data = await getMoviedb_API(`movie/${id}`);
+        const data = await movieDB_API.getMovieDetailInfo(id);
 
         setMovieInfo({
           imgPath: data.poster_path,

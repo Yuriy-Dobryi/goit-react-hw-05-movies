@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   column-gap: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
   padding-right: 20px;
   background-color: #6a7d98;
   border-radius: 20px;
@@ -48,7 +48,6 @@ export const AddInfoWrapper = styled.div`
   margin-top: 30px;
   column-gap: 20px;
 `
-
 export const Ul = styled.ul`
   display: flex;
   flex-wrap: wrap;
@@ -58,14 +57,12 @@ export const Ul = styled.ul`
 `;
 
 export const Li = styled.li`
-  width: 270px;
+  width: 230px;
   text-align: center;
 `;
 
 export const ActorImg = styled.img`
   width: 100%;
-  max-height: 350px;
   object-fit: cover;
   border-radius: 20px;
 `;
-
