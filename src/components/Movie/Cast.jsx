@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
 
 import { MovieDB_API, spinStyles } from 'services';
-import { Ul, Li, ActorImg } from '../components/Movie/MovieInfo.styled';
+import { Ul, Li, ActorImg } from './MovieInfo.styled';
 import defaultActor from 'images/default-actor.png';
 
 const movieDB_API = new MovieDB_API();

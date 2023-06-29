@@ -5,8 +5,8 @@ import SharedLayout from './SharedLayout/SharedLayout';
 const Home = lazy(() => import('pages/Home'));
 const Movies = lazy(() => import('pages/Movies'));
 const MovieInfo = lazy(() => import('pages/MovieInfo'));
-const Cast = lazy(() => import('pages/Cast'));
-const Reviews = lazy(() => import('pages/Reviews'));
+const Cast = lazy(() => import('components/Movie/Cast'));
+const Reviews = lazy(() => import('components/Movie/Reviews'));
 const About = lazy(() => import('pages/About'));
 const NotFound = lazy(() => import('pages/NotFound'));
 
