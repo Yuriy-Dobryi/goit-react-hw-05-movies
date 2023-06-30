@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 export const Ul = styled.ul`
   display: grid;
-  margin-top: 30px;
   max-width: calc(100vw - 48px);
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 25px;

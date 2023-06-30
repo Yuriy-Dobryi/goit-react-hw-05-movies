@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   column-gap: 20px;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
   padding-right: 20px;
   background-color: #6a7d98;
   border-radius: 20px;
@@ -38,7 +38,13 @@ export const Item = styled.li`
 `;
 
 export const StyledLink = styled(Link)`
+  color: #ffb2b2;
   font-size: 24px;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 
@@ -46,7 +52,7 @@ export const StyledLink = styled(Link)`
 export const AddInfoWrapper = styled.div`
   display: flex;
   margin-top: 30px;
-  column-gap: 20px;
+  column-gap: 30px;
 `
 export const Ul = styled.ul`
   display: flex;

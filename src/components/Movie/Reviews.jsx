@@ -60,9 +60,9 @@ export default function Reviews() {
 
 const Wrapper = styled.li`
   margin-bottom: 40px;
-  padding: 40px;
-  font-size: 20px;
-  background-color: #292d33;
+  padding: 20px;
+  font-size: 18px;
+  background-color: #4e535a;
   color: white;
   text-align: justify;
   border-radius: 15px;

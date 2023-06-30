@@ -54,10 +54,11 @@ export default function MoviesList({ query }) {
 
   return (
     <>
-      {isLoading ? <TailSpin {...spinStyles} />
-        :
+      {isLoading ? (
+        <TailSpin {...spinStyles} />
+      ) : (
         <Ul>
-          {movies.map(({ id, title, name, poster_path, tagline }) =>
+          {movies.map(({ id, title, name, poster_path, tagline }) => (
             <Li key={id}>
               <LinkStyled to={`/movies/${id}`} state={{ from: location }}>
                 <PreviewMovie
@@ -68,9 +69,9 @@ export default function MoviesList({ query }) {
                 />
               </LinkStyled>
             </Li>
-          )}
+          ))}
         </Ul>
-      }
+      )}
     </>
   );
 }

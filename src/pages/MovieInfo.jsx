@@ -101,7 +101,7 @@ export default function MovieInfo() {
         </Wrapper>
       )}
 
-      <Suspense>
+      <Suspense fallback={<TailSpin {...spinStyles} />}>
         <Outlet />
       </Suspense>
     </>

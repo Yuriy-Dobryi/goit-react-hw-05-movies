@@ -20,7 +20,7 @@ export const Form = styled.form`
   display: flex;
   align-items: center;
   width: 400px;
-  margin: 0 auto;
+  margin: 0 auto 30px;
   padding: 0 15px;
   background-color: white;
   overflow: hidden;

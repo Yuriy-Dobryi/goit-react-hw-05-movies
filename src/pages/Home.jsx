@@ -2,6 +2,7 @@ import MoviesList from '../components/MoviesList/MoviesList';
 import styled from 'styled-components';
 
 const Title = styled.h1`
+  margin-bottom: 30px;
   color: #424254;
   font-size: 24px;
   text-align: center;
