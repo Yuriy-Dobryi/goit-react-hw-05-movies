@@ -4,6 +4,7 @@ export const Poster = styled.img`
   width: 100%;
   height: 350px;
   align-self: flex-start;
+  object-fit: cover;
   border-radius: 20px;
 `;
 

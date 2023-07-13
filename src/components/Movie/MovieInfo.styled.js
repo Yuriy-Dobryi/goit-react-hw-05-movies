@@ -12,7 +12,7 @@ export const IconBack = styled(FiCornerUpLeft)`
   }
 `;
 
-export const Wrapper = styled.div`
+export const CardWrapper = styled.div`
   display: flex;
   align-items: center;
   column-gap: 20px;
@@ -22,10 +22,23 @@ export const Wrapper = styled.div`
   border-radius: 20px;
 `;
 
+export const InfoWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
 export const MovieImg = styled.img`
   width: 400px;
   min-height: 350px;
   border-radius: 20px;
+`;
+
+export const Title = styled.h2`
+  color: #ffb2b2;
+  margin: 0 auto 15px;
+  font-size: 36px;
+  text-align: center;
+  letter-spacing: -0.04em;
 `;
 
 export const Item = styled.li`
@@ -39,7 +52,7 @@ export const Item = styled.li`
 
 export const StyledLink = styled(Link)`
   color: #ffb2b2;
-  font-size: 24px;
+  font-size: 22px;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {

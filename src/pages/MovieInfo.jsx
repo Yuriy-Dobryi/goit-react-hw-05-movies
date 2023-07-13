@@ -11,8 +11,10 @@ import {
 } from 'services';
 import {
   IconBack,
-  Wrapper,
+  CardWrapper,
+  InfoWrapper,
   MovieImg,
+  Title,
   Item,
   AddInfoWrapper,
   StyledLink,
@@ -76,7 +78,7 @@ export default function MovieInfo() {
       {isLoading ? (
         <TailSpin {...spinStyles} />
       ) : (
-        <Wrapper>
+        <CardWrapper>
           <MovieImg
             src={
               imgPath
@@ -85,9 +87,9 @@ export default function MovieInfo() {
             }
             alt={tagline ? tagline : 'Movie Image'}
           />
-          <div>
+          <InfoWrapper>
+            <Title>{title ? title : name}</Title>
             <ul>
-              <Item>{title ? title : name}</Item>
               <Item>{year ? year : ''}</Item>
               <Item>{rating ? rating : ''}</Item>
               <Item>{genres ? genres : ''}</Item>
@@ -97,8 +99,8 @@ export default function MovieInfo() {
               <StyledLink to={'cast'}>Cast</StyledLink>
               <StyledLink to={'reviews'}>Reviews</StyledLink>
             </AddInfoWrapper>
-          </div>
-        </Wrapper>
+          </InfoWrapper>
+        </CardWrapper>
       )}
 
       <Suspense fallback={<TailSpin {...spinStyles} />}>
